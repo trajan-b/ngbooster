@@ -1,0 +1,3 @@
+<%dashName%>
+<%camelName%>
+<%camelNameFirstUpper%>

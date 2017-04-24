@@ -1,0 +1,60 @@
+{
+  "name": "node-typescript-boilerplate",
+  "version": "0.0.0",
+  "description": "Minimalistic boilerplate to quick-start Node.js development in TypeScript.",
+  "engineStrict": true,
+  "engines": {
+    "node": ">= 6.9.0"
+  },
+  "devDependencies": {
+    "@types/jest": "~19.2.2",
+    "@types/node": "~6.0.70",
+    "jest": "~19.0.2",
+    "rimraf": "~2.6.1",
+    "tslint": "~4.5.1",
+    "tslint-microsoft-contrib": "~4.0.0",
+    "typescript": "~2.2.2"
+  },
+  "scripts": {
+    "clean": "rimraf coverage build tmp",
+    "build": "tsc -p tsconfig.release.json",
+    "watch": "tsc -w -p tsconfig.release.json",
+    "lint": "tslint -t stylish '{src,__tests__}/**/*.{ts,tsx}'",
+    "pretest": "npm run lint",
+    "test": "npm run test-only",
+    "test-only": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "author": "Jakub Synowiec <github@jakubsynowiec.info>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsynowiec/node-typescript-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jsynowiec/node-typescript-boilerplate/issues"
+  },
+  "homepage": "https://github.com/jsynowiec/node-typescript-boilerplate#readme",
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/preprocessor.js"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
+    "testRegex": "<rootDir>(__tests__/).*\\.(test|spec)\\.(ts|js)$",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx,js,jsx}",
+      "!src/**/*.d.ts"
+    ]
+  },
+  "dependencies": {
+    "rimraf": "^2.6.1",
+    "tslib": "~1.6.0"
+  }
+}
