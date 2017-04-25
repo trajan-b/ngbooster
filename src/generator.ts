@@ -2,13 +2,16 @@
  * Created by Trajan on 24/04/2017.
  */
 
-import fs = require('fs');
-import path = require('path');
-import rimraf = require('rimraf');
+import * as fs from 'fs';
+import * as path from 'path';
+import * as rimraf from 'rimraf';
+import { COMPONENT, GeneratedType, HTML, SASS, SPEC, TYPES_MAP } from './types-map';
 
 export interface IComponent {
-    name: string;
     children?: IComponent[];
+    inputList?: string[];
+    name: string;
+    outputList?: string[];
 }
 
 export interface IGeneratedTypeInfos {
@@ -16,14 +19,6 @@ export interface IGeneratedTypeInfos {
     name: string;
     templateFile: string;
 }
-
-export const HTML: GeneratedType = 'html';
-export const SASS: GeneratedType = 'sass';
-export const SPEC: GeneratedType = 'spec';
-export const COMPONENT: GeneratedType = 'component';
-export const MODULE: GeneratedType = 'module';
-
-type GeneratedType = 'html' | 'sass' | 'spec' | 'component' | 'module';
 
 class Generator {
 
@@ -37,33 +32,7 @@ class Generator {
         }]
     }];
 
-    typesMap: Map<GeneratedType, IGeneratedTypeInfos> = new Map([
-        [HTML, {
-            fileLabelAdditional: '.component.html',
-            name: 'html',
-            templateFile: 'html-template.html'
-        }],
-        [SASS, {
-            fileLabelAdditional: '.component.scss',
-            name: 'sass',
-            templateFile: 'sass-template.scss'
-        }],
-        [SPEC, {
-            fileLabelAdditional: '.component.spec.ts',
-            name: 'spec',
-            templateFile: 'spec-template.spec.ts'
-        }],
-        [COMPONENT, {
-            fileLabelAdditional: '.component.ts',
-            name: 'component',
-            templateFile: 'component-template.ts'
-        }],
-        [MODULE, {
-          fileLabelAdditional: '.module.ts',
-          name: 'module',
-          templateFile: 'module-template.ts'
-        }]
-    ]);
+    typesMap: Map<GeneratedType, IGeneratedTypeInfos> = TYPES_MAP;
 
     outputDirName: string = 'output';
     outputDir: string = 'C:/Windows/Temp';
