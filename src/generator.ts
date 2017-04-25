@@ -6,27 +6,28 @@ import fs = require('fs');
 import path = require('path');
 import rimraf = require('rimraf');
 
-export interface Component {
+export interface IComponent {
     name: string;
-    children?: Component[];
+    children?: IComponent[];
 }
 
-export interface GeneratedTypeInfos {
+export interface IGeneratedTypeInfos {
     fileLabelAdditional: string;
     name: string;
     templateFile: string;
 }
 
-export const Html: GeneratedType = 'html';
-export const Sass: GeneratedType = 'sass';
-export const Spec: GeneratedType = 'spec';
-export const Ts: GeneratedType = 'ts';
+export const HTML: GeneratedType = 'html';
+export const SASS: GeneratedType = 'sass';
+export const SPEC: GeneratedType = 'spec';
+export const COMPONENT: GeneratedType = 'component';
+export const MODULE: GeneratedType = 'module';
 
-type GeneratedType = 'html' | 'sass' | 'spec' | 'ts';
+type GeneratedType = 'html' | 'sass' | 'spec' | 'component' | 'module';
 
 class Generator {
 
-    componentTree: Component[] = [{
+    componentTree: IComponent[] = [{
         name: 'connection-list-container',
         children: [{
             name: 'connection-list',
@@ -36,26 +37,31 @@ class Generator {
         }]
     }];
 
-    typesMap: Map<GeneratedType, GeneratedTypeInfos> = new Map([
-        [Html, {
+    typesMap: Map<GeneratedType, IGeneratedTypeInfos> = new Map([
+        [HTML, {
             fileLabelAdditional: '.component.html',
             name: 'html',
             templateFile: 'html-template.html'
         }],
-        [Sass, {
+        [SASS, {
             fileLabelAdditional: '.component.scss',
             name: 'sass',
             templateFile: 'sass-template.scss'
         }],
-        [Spec, {
+        [SPEC, {
             fileLabelAdditional: '.component.spec.ts',
             name: 'spec',
             templateFile: 'spec-template.spec.ts'
         }],
-        [Ts, {
+        [COMPONENT, {
             fileLabelAdditional: '.component.ts',
-            name: 'ts',
-            templateFile: 'ts-template.ts'
+            name: 'component',
+            templateFile: 'component-template.ts'
+        }],
+        [MODULE, {
+          fileLabelAdditional: '.module.ts',
+          name: 'module',
+          templateFile: 'module-template.ts'
         }]
     ]);
 
@@ -91,7 +97,7 @@ class Generator {
         });
     }
 
-    dealWithComponent(comp: Component): void {
+    dealWithComponent(comp: IComponent): void {
         console.log(`Generating ${comp.name}`);
         this.replacements.set(this.dashReplace, comp.name);
         this.replacements.set(this.camelReplace, comp.name);
@@ -106,23 +112,23 @@ class Generator {
     generateFiles(name: string): void {
         fs.mkdirSync(name);
         process.chdir(name);
-        this.generateFileAndReplace(name, this.typesMap.get(Html));
-        this.generateFileAndReplace(name, this.typesMap.get(Sass));
-        this.generateFileAndReplace(name, this.typesMap.get(Spec));
-        this.generateFileAndReplace(name, this.typesMap.get(Ts));
+        this.generateFileAndReplace(name, this.typesMap.get(HTML));
+        this.generateFileAndReplace(name, this.typesMap.get(SASS));
+        this.generateFileAndReplace(name, this.typesMap.get(SPEC));
+        this.generateFileAndReplace(name, this.typesMap.get(COMPONENT));
     }
 
-    generateFileAndReplace(name: string, generatedType: GeneratedTypeInfos): void {
+    generateFileAndReplace(name: string, generatedType: IGeneratedTypeInfos): void {
 
-        let content = fs.readFileSync(this.rootDir + '/templates/' + generatedType.templateFile).toString();
-        let replacedContent = this.replaceTemplateWithName(content, this.replacements);
+        let content: string = fs.readFileSync(this.rootDir + '/templates/' + generatedType.templateFile).toString();
+        let replacedContent: string = this.replaceTemplateWithName(content, this.replacements);
         fs.writeFileSync(name + generatedType.fileLabelAdditional, replacedContent);
 
     }
 
     replaceTemplateWithName(template: string, replacements: Map<string, string>): string {
 
-        let initTemplate = template;
+        let initTemplate: string = template;
 
         replacements.forEach((value: string, key: string) => {
             initTemplate = initTemplate.replace(key, value);

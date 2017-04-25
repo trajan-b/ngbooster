@@ -82,7 +82,7 @@
     "max-file-line-count": [true, 500],
     "max-func-body-length": [true, 100, {"ignore-parameters-to-function-regex": "describe"}],
     "max-line-length": [true, 140],
-    "member-access": true,
+    "member-access": false,
     "member-ordering": [true, { "order": "fields-first" }],
     "missing-jsdoc": false,
     "new-parens": true,
@@ -136,7 +136,7 @@
     "one-line": [true, "check-open-brace", "check-catch", "check-else", "check-whitespace"],
     "quotemark": [true, "single"],
     "semicolon": [true, "always"],
-    "trailing-comma": [true, {"singleline": "never", "multiline": "always"}], // forcing trailing commas for multi-line
+    //"trailing-comma": [true, {"singleline": "never", "multiline": "always"}], // forcing trailing commas for multi-line
     "typedef-whitespace": [
       true,
       {
