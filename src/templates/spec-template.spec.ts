@@ -1,3 +1,3 @@
-<%dashName%>
-<%camelName%>
-<%camelNameFirstUpper%>
+<%=dashName%>
+<%=camelName%>
+<%=camelNameFirstUpper%>

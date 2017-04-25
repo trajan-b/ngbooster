@@ -30,3 +30,5 @@ build/
 
 *.js
 *.js.map
+
+src/output/
