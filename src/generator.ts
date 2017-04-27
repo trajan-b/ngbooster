@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
 import {CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS, REPLACEMENTS_MAP} from './replacements-map';
+import {StringHelper} from './string-helper';
 import {COMPONENT, GeneratedType, HTML, MODULE, SASS, SPEC, TYPES_MAP} from './types-map';
 
 export interface IComponent {
@@ -46,6 +47,8 @@ class Generator {
     replacements: Map<string, string>;
 
     constructor() {
+        StringHelper.extendString();
+
         this.rootDir = path.dirname(require.main.filename);
         this.outputDir = this.rootDir;
         this.replacements = REPLACEMENTS_MAP;

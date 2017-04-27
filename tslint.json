@@ -130,7 +130,7 @@
     "no-consecutive-blank-lines": true,
     "no-empty-line-after-opening-brace": false,
     "no-single-line-block-comment": true,
-    "no-trailing-whitespace": true,
+    "no-trailing-whitespace": false,
     "no-unnecessary-semicolons": true,
     "object-literal-key-quotes": [true, "as-needed"],
     "one-line": [true, "check-open-brace", "check-catch", "check-else", "check-whitespace"],
