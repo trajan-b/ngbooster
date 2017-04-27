@@ -14,6 +14,15 @@ export interface IComponent {
     inputList?: string[];
     name: string;
     outputList?: string[];
+    retrievesDataFrom?: IStore[];
+}
+
+export interface IStore {
+    name: string;
+    canDelete?: boolean;
+    canGet?: boolean;
+    canPatch?: boolean;
+    canPut?: boolean;
 }
 
 export interface IGeneratedTypeInfos {
@@ -22,9 +31,9 @@ export interface IGeneratedTypeInfos {
     templateFile: string;
 }
 
-class Generator {
+const APP_PREFIX: string = 'ei';
 
-    APP_PREFIX: string = 'ei';
+class Generator {
 
     componentTree: IComponent[] = [{
         name: 'connection-list-container',
@@ -35,6 +44,11 @@ class Generator {
                 inputList: ['connection'],
                 outputList: ['onAccountClick']
             }]
+        }],
+        retrievesDataFrom: [{
+            name: 'connection',
+            canGet: true,
+            canPatch: false
         }]
     }];
 
@@ -124,7 +138,7 @@ class Generator {
         }
 
         return list
-            .map(element => "'"+element+"': '" + prefix + this.APP_PREFIX + 'CamelFirstUp' + "'")
+            .map(element => "'"+element+"': '" + prefix + APP_PREFIX + 'CamelFirstUp' + "'")
             .join(',');
     }
 
