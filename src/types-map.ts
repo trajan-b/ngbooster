@@ -4,13 +4,14 @@
 
 import { IGeneratedTypeInfos } from './generator';
 
-export type GeneratedType = 'component' | 'html' | 'module' | 'sass' | 'spec';
+export type GeneratedType = 'component' | 'html' | 'module' | 'sass' | 'spec' | 'store';
 
 export const COMPONENT: GeneratedType = 'component';
 export const HTML: GeneratedType = 'html';
 export const MODULE: GeneratedType = 'module';
 export const SASS: GeneratedType = 'sass';
 export const SPEC: GeneratedType = 'spec';
+export const STORE: GeneratedType = 'store';
 
 export const TYPES_MAP: Map<GeneratedType, IGeneratedTypeInfos> = new Map([
   [COMPONENT, {
@@ -32,6 +33,11 @@ export const TYPES_MAP: Map<GeneratedType, IGeneratedTypeInfos> = new Map([
     fileLabelAdditional: '.component.scss',
     name: 'sass',
     templateFile: 'sass-template.scss'
+  }],
+  [STORE, {
+    fileLabelAdditional: '.store.ts',
+    name: 'store',
+    templateFile: 'store-template.ts'
   }],
   [SPEC, {
     fileLabelAdditional: '.component.spec.ts',
