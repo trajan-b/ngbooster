@@ -9,9 +9,9 @@ export const INPUTS: string = '<%=inputs%>';
 export const OUTPUTS: string = '<%=outputs%>';
 
 export const REPLACEMENTS_MAP: Map<string, string> = new Map<string, string> ([
-  [CAMEL_NAME, ''],
-  [CAMEL_NAME_FIRST_UP, ''],
-  [DASH_NAME, ''],
-  [INPUTS, ''],
-  [OUTPUTS, '']
+    [CAMEL_NAME, ''],
+    [CAMEL_NAME_FIRST_UP, ''],
+    [DASH_NAME, ''],
+    [INPUTS, ''],
+    [OUTPUTS, '']
 ]);
