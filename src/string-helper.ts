@@ -21,6 +21,11 @@ export class StringHelper {
             return self._toSnakeCase(this);
         };
 
+        String.prototype.replaceAll = function(search, replacement) {
+            let target = this;
+            return target.replace(new RegExp(search, 'g'), replacement);
+        };
+
     }
 
     /* To be converted, a string must be in lower camel case */
