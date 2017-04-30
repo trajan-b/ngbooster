@@ -5,7 +5,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
-import {CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS, REPLACEMENTS_MAP} from './replacements-map';
+import {CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS} from './replacements-map';
 import {GET, IStore} from './store-generator';
 import {StringHelper} from './string-helper';
 import {COMPONENT, GeneratedType, HTML, MODULE, SASS, SPEC, STORE, TYPES_MAP} from './types-map';
@@ -62,7 +62,7 @@ class Generator {
 
         this.rootDir = path.dirname(require.main.filename);
         this.outputDir = this.rootDir;
-        this.replacements = REPLACEMENTS_MAP;
+        this.replacements = new Map<string, string>();
     }
 
     generate(): void {
