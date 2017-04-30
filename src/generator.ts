@@ -1,55 +1,25 @@
-/**
- * Created by Trajan on 24/04/2017.
- */
 
 import * as fs from 'fs';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
+import {COMPONENT_TREE, IComponent} from './component-tree';
 import {CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS} from './replacements-map';
-import {GET, IStore} from './store-generator';
+import {IStore} from './store-generator';
 import {StringHelper} from './string-helper';
 import {
-    COMPONENT, COMPONENT_SPEC, GeneratedType, HTML, MODULE, SASS, STORE, STORE_SPEC, TYPES_MAP,
-    IGeneratedTypeInfos
+    COMPONENT, COMPONENT_SPEC, GeneratedType, HTML, IGeneratedTypeInfos, MODULE, SASS, STORE, STORE_SPEC, TYPES_MAP
 } from './types-map';
 
-export interface IComponent {
-    children?: IComponent[];
-    inputList?: string[];
-    name: string;
-    outputList?: string[];
-    retrievesDataFrom?: IStore[];
-}
-
 const APP_PREFIX: string = 'ei';
+const OUTPUT_DIR_NAME: string = 'output';
 
 class Generator {
 
-    componentTree: IComponent[] = [{
-        name: 'connection-list-container',
-        children: [{
-            name: 'connection-list',
-            children: [{
-                name: 'connection-preview',
-                inputList: ['connection'],
-                outputList: ['onAccountClick']
-            }]
-        }],
-        retrievesDataFrom: [{
-            name: 'connection',
-            actionList: [{
-                name: GET,
-                route: '/connections',
-                wayToHttpCall: 'this.restangularResources.connectionResources().one().get()'
-            }]
-        }]
-    }];
-
+    componentTree: IComponent[] = COMPONENT_TREE;
     typesMap: Map<GeneratedType, IGeneratedTypeInfos> = TYPES_MAP;
 
-    outputDirName: string = 'output';
-    outputDir: string = 'C:/Windows/Temp/';
-    rootDir: string = '';
+    outputDir: string;
+    rootDir: string;
     templatesDir: string = 'C:/Users/Trajan/Documents/GitHub/ngbooster/templates/';
 
     replacements: Map<string, string>;
@@ -64,11 +34,11 @@ class Generator {
 
     generate(): void {
         process.chdir(this.outputDir);
-        if (fs.existsSync(this.outputDirName)) {
-            rimraf.sync(this.outputDirName);
+        if (fs.existsSync(OUTPUT_DIR_NAME)) {
+            rimraf.sync(OUTPUT_DIR_NAME);
         }
-        fs.mkdirSync(this.outputDirName);
-        process.chdir(this.outputDirName);
+        fs.mkdirSync(OUTPUT_DIR_NAME);
+        process.chdir(OUTPUT_DIR_NAME);
         this.componentTree.forEach(comp => {
             this.dealWithComponent(comp);
         });
