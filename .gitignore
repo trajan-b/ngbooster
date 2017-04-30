@@ -28,7 +28,9 @@ build/
 # Misc
 .DS_Store
 
-*.js
-*.js.map
+src/**/*.js
+src/**/*.js.map
+templates/**/*.js
+templates/**/*.js.map
 
 src/output/

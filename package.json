@@ -9,7 +9,13 @@
   "devDependencies": {
     "@types/jest": "~19.2.2",
     "@types/node": "~6.0.70",
+    "jasmine-core": "^2.6.1",
     "jest": "~19.0.2",
+    "karma": "^1.6.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-typescript": "^3.0.1",
     "rimraf": "~2.6.1",
     "tslint": "~4.5.1",
     "tslint-microsoft-contrib": "~4.0.0",
