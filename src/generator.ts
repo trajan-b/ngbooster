@@ -8,7 +8,10 @@ import * as rimraf from 'rimraf';
 import {CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS} from './replacements-map';
 import {GET, IStore} from './store-generator';
 import {StringHelper} from './string-helper';
-import {COMPONENT, GeneratedType, HTML, MODULE, SASS, SPEC, STORE, TYPES_MAP} from './types-map';
+import {
+    COMPONENT, COMPONENT_SPEC, GeneratedType, HTML, MODULE, SASS, STORE, STORE_SPEC, TYPES_MAP,
+    IGeneratedTypeInfos
+} from './types-map';
 
 export interface IComponent {
     children?: IComponent[];
@@ -16,12 +19,6 @@ export interface IComponent {
     name: string;
     outputList?: string[];
     retrievesDataFrom?: IStore[];
-}
-
-export interface IGeneratedTypeInfos {
-    fileLabelAdditional: string;
-    name: string;
-    templateFile: string;
 }
 
 const APP_PREFIX: string = 'ei';
@@ -101,6 +98,7 @@ class Generator {
         });
 
         this.generateFileAndReplace(store.name, this.typesMap.get(STORE));
+        this.generateFileAndReplace(store.name, this.typesMap.get(STORE_SPEC));
     }
 
     generateFiles(name: string): void {
@@ -110,7 +108,7 @@ class Generator {
         this.generateFileAndReplace(name, this.typesMap.get(HTML));
         this.generateFileAndReplace(name, this.typesMap.get(MODULE));
         this.generateFileAndReplace(name, this.typesMap.get(SASS));
-        this.generateFileAndReplace(name, this.typesMap.get(SPEC));
+        this.generateFileAndReplace(name, this.typesMap.get(COMPONENT_SPEC));
     }
 
     generateFileAndReplace(name: string, generatedType: IGeneratedTypeInfos): void {

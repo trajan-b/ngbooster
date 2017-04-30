@@ -1,47 +1,47 @@
-/**
- * Created by Trajan on 25/04/2017.
- */
 
-import { IGeneratedTypeInfos } from './generator';
-
-export type GeneratedType = 'component' | 'html' | 'module' | 'sass' | 'spec' | 'store';
+export type GeneratedType = 'component' | 'component-spec' | 'html' | 'module' | 'sass' | 'spec'
+    | 'store' | 'store-spec';
 
 export const COMPONENT: GeneratedType = 'component';
+export const COMPONENT_SPEC: GeneratedType = 'component-spec';
 export const HTML: GeneratedType = 'html';
 export const MODULE: GeneratedType = 'module';
 export const SASS: GeneratedType = 'sass';
-export const SPEC: GeneratedType = 'spec';
 export const STORE: GeneratedType = 'store';
+export const STORE_SPEC: GeneratedType = 'store-spec';
+
+export interface IGeneratedTypeInfos {
+    fileLabelAdditional: string;
+    templateFile: string;
+}
 
 export const TYPES_MAP: Map<GeneratedType, IGeneratedTypeInfos> = new Map([
-  [COMPONENT, {
-    fileLabelAdditional: '.component.ts',
-    name: 'component',
-    templateFile: 'component-template.ts'
-  }],
-  [HTML, {
-    fileLabelAdditional: '.component.html',
-    name: 'html',
-    templateFile: 'html-template.html'
-  }],
-  [MODULE, {
-    fileLabelAdditional: '.module.ts',
-    name: 'module',
-    templateFile: 'module-template.ts'
-  }],
-  [SASS, {
-    fileLabelAdditional: '.component.scss',
-    name: 'sass',
-    templateFile: 'sass-template.scss'
-  }],
-  [STORE, {
-    fileLabelAdditional: '.store.ts',
-    name: 'store',
-    templateFile: 'store-template.ts'
-  }],
-  [SPEC, {
-    fileLabelAdditional: '.component.spec.ts',
-    name: 'spec',
-    templateFile: 'spec-template.spec.ts'
-  }]
+    [COMPONENT, {
+        fileLabelAdditional: '.component.ts',
+        templateFile: 'component-template.ts'
+    }],
+    [HTML, {
+        fileLabelAdditional: '.component.html',
+        templateFile: 'html-template.html'
+    }],
+    [MODULE, {
+        fileLabelAdditional: '.module.ts',
+        templateFile: 'module-template.ts'
+    }],
+    [SASS, {
+        fileLabelAdditional: '.component.scss',
+        templateFile: 'sass-template.scss'
+    }],
+    [STORE, {
+        fileLabelAdditional: '-store.ts',
+        templateFile: 'store-template.ts'
+    }],
+    [COMPONENT_SPEC, {
+        fileLabelAdditional: '.component.spec.ts',
+        templateFile: 'spec-template.spec.ts'
+    }],
+    [STORE_SPEC, {
+        fileLabelAdditional: '-store.spec.ts',
+        templateFile: 'spec-template.spec.ts'
+    }]
 ]);
