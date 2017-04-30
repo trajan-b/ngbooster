@@ -79,9 +79,7 @@ class Generator {
 
     dealWithComponent(comp: IComponent): void {
         console.log(`Generating ${comp.name}`);
-        this.replacements.set(DASH_NAME, comp.name);
-        this.replacements.set(CAMEL_NAME, comp.name.replaceAll('-', ''));
-        this.replacements.set(CAMEL_NAME_FIRST_UP, comp.name.replaceAll('-', ''));
+        this.setReplacementsName(comp.name);
         this.replacements.set(INPUTS, this.generateInputs(comp.inputList));
         this.replacements.set(OUTPUTS, this.generateOutputs(comp.outputList));
 
@@ -95,6 +93,7 @@ class Generator {
     }
 
     dealWithStore(store: IStore): void {
+        this.setReplacementsName(store.name);
         this.generateFileAndReplace(store.name, this.typesMap.get(STORE));
     }
 
@@ -142,8 +141,14 @@ class Generator {
         }
 
         return list
-            .map(element => "'"+element+"': '" + prefix + APP_PREFIX + 'CamelFirstUp' + "'")
+            .map(element => `'${element}': ${prefix}${APP_PREFIX}${element.toCamelCase()}`)
             .join(',');
+    }
+
+    setReplacementsName(name: string): void {
+        this.replacements.set(DASH_NAME, name);
+        this.replacements.set(CAMEL_NAME, name.toCamelCase());
+        this.replacements.set(CAMEL_NAME_FIRST_UP, name.toCamelFirstUpper());
     }
 }
 
