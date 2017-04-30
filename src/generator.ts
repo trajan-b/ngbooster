@@ -94,6 +94,12 @@ class Generator {
 
     dealWithStore(store: IStore): void {
         this.setReplacementsName(store.name);
+
+        store.actionList.forEach(action => {
+            let key: string = `${action.name}.wayToHttpCall`;
+            this.replacements.set(key.decorate(), action.wayToHttpCall);
+        });
+
         this.generateFileAndReplace(store.name, this.typesMap.get(STORE));
     }
 

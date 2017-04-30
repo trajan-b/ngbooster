@@ -9,7 +9,7 @@ export class <%=camelNameFirstUpper%>Store {
             return this.<%=camelName%>Promise;
         }
 
-        return <%=get.wayToHttpCall=>
+        return <%=GET.wayToHttpCall%>
             .then(response => return <%=camelNameFirstUpper%>.deserialize());
 
     }

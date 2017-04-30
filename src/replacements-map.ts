@@ -15,3 +15,7 @@ export const REPLACEMENTS_MAP: Map<string, string> = new Map<string, string> ([
     [INPUTS, ''],
     [OUTPUTS, '']
 ]);
+
+export const DECORATE_STRING_FOR_REPLACEMENT: Function = (str: string) => {
+    return `<%=${str}%>`;
+};

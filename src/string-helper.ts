@@ -1,9 +1,11 @@
 /**
  * Created by Trajan on 27/04/2017.
  */
+import {DECORATE_STRING_FOR_REPLACEMENT} from './replacements-map';
 
 declare global {
     interface String {
+        decorate: Function;
         replaceAll: Function;
         toCamelCase: Function;
         toCamelFirstUpper: Function;
@@ -13,9 +15,13 @@ declare global {
 
 export class StringHelper {
 
-    extendString(): void {
+    public extendString(): void {
 
         let self: StringHelper = this;
+
+        String.prototype.decorate = function {
+            return DECORATE_STRING_FOR_REPLACEMENT(this);
+        };
 
         /* We purposely dont use arrow function because of `this` */
         String.prototype.toCamelCase = function {
