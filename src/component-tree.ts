@@ -1,5 +1,5 @@
 
-import {GET, IStore} from './store-generator';
+import {GET, IStore, POST} from './store-generator';
 
 export interface IComponent {
     children?: IComponent[];
@@ -21,10 +21,16 @@ export const COMPONENT_TREE: IComponent[] = [{
     }],
     retrievesDataFrom: [{
         name: 'connection',
-        actionList: [{
-            name: GET,
-            route: '/connections',
-            wayToHttpCall: 'this.restangularResources.connectionResources().one().get()'
-        }]
+        actionList: [
+            {
+                name: GET,
+                route: '/connections',
+                wayToHttpCall: 'this.restangularResources.connectionResources().one().get()'
+            },
+            {
+                name: POST,
+                route: '/connections',
+                wayToHttpCall: 'this.restangularResources.connectionResources().delete()'
+            }]
     }]
 }];

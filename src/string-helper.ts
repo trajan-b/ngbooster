@@ -1,7 +1,8 @@
-/**
- * Created by Trajan on 27/04/2017.
- */
-import {DECORATE_STRING_FOR_REPLACEMENT, DECORATE_STRING_FOR_CONDITIONAL} from './replacements-map';
+
+import {
+    DECORATE_STRING_FOR_CONDITIONAL,
+    DECORATE_STRING_FOR_REPLACEMENT
+} from './replacements-map';
 
 declare global {
     interface String {
