@@ -57,6 +57,7 @@ class Generator {
     outputDirName: string = 'output';
     outputDir: string = 'C:/Windows/Temp';
     rootDir: string = '';
+    templatesDir: string = 'C:/Users/Trajan/Documents/GitHub/ngbooster/templates/';
 
     replacements: Map<string, string>;
 
@@ -113,7 +114,7 @@ class Generator {
 
     generateFileAndReplace(name: string, generatedType: IGeneratedTypeInfos): void {
 
-        let content: string = fs.readFileSync(this.rootDir + '/templates/' + generatedType.templateFile).toString();
+        let content: string = fs.readFileSync(this.templatesDir + generatedType.templateFile).toString();
         let replacedContent: string = this.replaceTemplateWithName(content, this.replacements);
         fs.writeFileSync(name + generatedType.fileLabelAdditional, replacedContent);
 
