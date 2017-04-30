@@ -55,7 +55,7 @@ class Generator {
     typesMap: Map<GeneratedType, IGeneratedTypeInfos> = TYPES_MAP;
 
     outputDirName: string = 'output';
-    outputDir: string = 'C:/Windows/Temp';
+    outputDir: string = 'C:/Windows/Temp/';
     rootDir: string = '';
     templatesDir: string = 'C:/Users/Trajan/Documents/GitHub/ngbooster/templates/';
 
@@ -98,7 +98,7 @@ class Generator {
         }
     }
 
-    dealWithStore(store: IStore) {
+    dealWithStore(store: IStore): void {
         this.generateFileAndReplace(store.name, this.typesMap.get(STORE));
     }
 
