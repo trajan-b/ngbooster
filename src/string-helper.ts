@@ -1,5 +1,7 @@
 
 import {
+    DECORATE_BEGIN_CONDITIONAL,
+    DECORATE_END_CONDITIONAL,
     DECORATE_STRING_FOR_CONDITIONAL,
     DECORATE_STRING_FOR_REPLACEMENT
 } from './replacements-map';
@@ -7,6 +9,8 @@ import {
 declare global {
     interface String {
         decorateForReplacement: Function;
+        decorateBeginConditional: Function;
+        decorateEndConditional: Function;
         decorateForConditional: Function;
         replaceAll: Function;
         toCamelCase: Function;
@@ -23,6 +27,14 @@ export class StringHelper {
 
         String.prototype.decorateForReplacement = function {
             return DECORATE_STRING_FOR_REPLACEMENT(this);
+        };
+
+        String.prototype.decorateBeginConditional = function(identifier: string) {
+            return DECORATE_BEGIN_CONDITIONAL(this, identifier);
+        };
+
+        String.prototype.decorateEndConditional = function(identifier: string) {
+            return DECORATE_END_CONDITIONAL(this, identifier);
         };
 
         String.prototype.decorateForConditional = function(identifier: string) {

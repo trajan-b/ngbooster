@@ -67,6 +67,17 @@ class Generator {
             this.replacements.set(key.decorateForReplacement(), action.wayToHttpCall);
         });
 
+        let storeRequests: StoreRequest[] = store.actionList.map(action => action.name);
+
+        ALL_STORE_REQUESTS.forEach(request => {
+            if (storeRequests.includes(request)) {
+                this.replacements.set(<string>request.decorateBeginConditional(<string>request), '');
+                this.replacements.set(<string>request.decorateEndConditional(<string>request), '');
+            } else {
+                this.replacements.set(<string>request.decorateForConditional(), '');
+            }
+        });
+
         this.generateFileAndReplace(store.name, this.typesMap.get(STORE));
         this.generateFileAndReplace(store.name, this.typesMap.get(STORE_SPEC));
     }

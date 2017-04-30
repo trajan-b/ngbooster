@@ -15,4 +15,11 @@ export const DECORATE_STRING_FOR_REPLACEMENT: Function = (str: string) => {
 export const DECORATE_STRING_FOR_CONDITIONAL: Function = (str: string) => {
     return `<!--begin-${str}[^]*end-${str}-->\n`;
 };
+
+export const DECORATE_BEGIN_CONDITIONAL: Function = (str: string) => {
+    return `<!--begin-${str}`;
+};
+
+export const DECORATE_END_CONDITIONAL: Function = (str: string) => {
+    return `end-${str}-->\n`;
 };
