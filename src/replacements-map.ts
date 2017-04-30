@@ -11,3 +11,7 @@ export const OUTPUTS: string = '<%=outputs%>';
 export const DECORATE_STRING_FOR_REPLACEMENT: Function = (str: string) => {
     return `<%=${str}%>`;
 };
+
+export const DECORATE_STRING_FOR_CONDITIONAL: Function = (stringToDecorate: string, identifier: string) => {
+    return `<!--begin-${identifier}${stringToDecorate}end-${identifier}-->`;
+};

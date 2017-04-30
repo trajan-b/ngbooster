@@ -10,6 +10,8 @@ export const PATCH: StoreRequest = 'PATCH';
 export const POST: StoreRequest = 'POST';
 export const PUT: StoreRequest = 'PUT';
 
+export const ALL_STORE_REQUESTS: StoreRequest[] = [DELETE, GET, PATCH, POST, PUT];
+
 export interface IStore {
     name: string;
     actionList?: IStoreAction[];

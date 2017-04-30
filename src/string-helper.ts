@@ -1,11 +1,12 @@
 /**
  * Created by Trajan on 27/04/2017.
  */
-import {DECORATE_STRING_FOR_REPLACEMENT} from './replacements-map';
+import {DECORATE_STRING_FOR_REPLACEMENT, DECORATE_STRING_FOR_CONDITIONAL} from './replacements-map';
 
 declare global {
     interface String {
-        decorate: Function;
+        decorateForReplacement: Function;
+        decorateForConditional: Function;
         replaceAll: Function;
         toCamelCase: Function;
         toCamelFirstUpper: Function;
@@ -19,8 +20,12 @@ export class StringHelper {
 
         let self: StringHelper = this;
 
-        String.prototype.decorate = function {
+        String.prototype.decorateForReplacement = function {
             return DECORATE_STRING_FOR_REPLACEMENT(this);
+        };
+
+        String.prototype.decorateForConditional = function(identifier: string) {
+            return DECORATE_STRING_FOR_CONDITIONAL(this, identifier);
         };
 
         /* We purposely dont use arrow function because of `this` */

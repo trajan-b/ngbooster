@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as rimraf from 'rimraf';
 import {COMPONENT_TREE, IComponent} from './component-tree';
 import {CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS} from './replacements-map';
-import {IStore} from './store-generator';
+import {ALL_STORE_REQUESTS, IStore, StoreRequest} from './store-generator';
 import {StringHelper} from './string-helper';
 import {
     COMPONENT, COMPONENT_SPEC, GeneratedType, HTML, IGeneratedTypeInfos, MODULE, SASS, STORE, STORE_SPEC, TYPES_MAP
@@ -64,7 +64,7 @@ class Generator {
 
         store.actionList.forEach(action => {
             let key: string = `${action.name}.wayToHttpCall`;
-            this.replacements.set(key.decorate(), action.wayToHttpCall);
+            this.replacements.set(key.decorateForReplacement(), action.wayToHttpCall);
         });
 
         this.generateFileAndReplace(store.name, this.typesMap.get(STORE));
