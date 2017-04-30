@@ -58,7 +58,7 @@ class Generator {
     replacements: Map<string, string>;
 
     constructor() {
-        StringHelper.extendString();
+        new StringHelper().extendString();
 
         this.rootDir = path.dirname(require.main.filename);
         this.outputDir = this.rootDir;
