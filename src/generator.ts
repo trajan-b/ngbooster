@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
 import {CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS, REPLACEMENTS_MAP} from './replacements-map';
-import {IStore} from './store-generator';
+import {GET, IStore} from './store-generator';
 import {StringHelper} from './string-helper';
 import {COMPONENT, GeneratedType, HTML, MODULE, SASS, SPEC, STORE, TYPES_MAP} from './types-map';
 
@@ -40,8 +40,11 @@ class Generator {
         }],
         retrievesDataFrom: [{
             name: 'connection',
-            canGet: true,
-            canPatch: false
+            actionList: [{
+                name: GET,
+                route: '/connections',
+                wayToHttpCall: 'this.restangularResources.connectionResources().one().get()'
+            }]
         }]
     }];
 

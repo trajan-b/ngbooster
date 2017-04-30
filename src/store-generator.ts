@@ -4,23 +4,20 @@
 
 export type StoreRequest = 'DELETE' | 'GET' | 'PATCH' | 'POST' | 'PUT';
 
-export const DELETE: string = 'DELETE';
-export const GET: string = 'GET';
-export const PATCH: string = 'PATCH';
-export const POST: string = 'POST';
-export const PUT: string = 'PUT';
+export const DELETE: StoreRequest = 'DELETE';
+export const GET: StoreRequest = 'GET';
+export const PATCH: StoreRequest = 'PATCH';
+export const POST: StoreRequest = 'POST';
+export const PUT: StoreRequest = 'PUT';
 
 export interface IStore {
     name: string;
-    canDelete?: boolean;
-    canGet?: boolean;
-    canPatch?: boolean;
-    canPut?: boolean;
+    actionList?: IStoreAction[];
 }
 
 export interface IStoreAction {
     name: StoreRequest;
-    url: string;
+    route: string;
     wayToHttpCall: string;
 }
 
