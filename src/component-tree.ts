@@ -3,6 +3,7 @@ import {GET, IStore, POST} from './store-generator';
 
 export interface IComponent {
     children?: IComponent[];
+    dependsOnModules?: string[];
     inputList?: string[];
     name: string;
     outputList?: string[];
@@ -17,8 +18,14 @@ export const COMPONENT_TREE: IComponent[] = [{
             name: 'connection-preview',
             inputList: ['connection'],
             outputList: ['onAccountClick']
-        }]
+        }],
+        dependsOnModules: [
+            'connectionPreviewModule.name'
+        ]
     }],
+    dependsOnModules: [
+        'connectionListModule.name'
+    ],
     retrievesDataFrom: [{
         name: 'connection',
         actionList: [

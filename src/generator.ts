@@ -7,7 +7,8 @@ import {CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS} from './rep
 import {ALL_STORE_REQUESTS, IStore, StoreRequest} from './store-generator';
 import {StringHelper} from './string-helper';
 import {
-    COMPONENT, COMPONENT_SPEC, GeneratedType, HTML, IGeneratedTypeInfos, MODULE, SASS, STORE, STORE_SPEC, TYPES_MAP
+    COMPONENT, COMPONENT_SPEC, GeneratedType, HTML, IGeneratedTypeInfos, COMPONENT_MODULE, SASS, STORE, STORE_SPEC,
+    STORE_MODULE, TYPES_MAP
 } from './types-map';
 
 const APP_PREFIX: string = 'ei';
@@ -84,6 +85,7 @@ class Generator {
         });
 
         this.generateFileAndReplace(store.name, this.typesMap.get(STORE));
+        this.generateFileAndReplace(store.name, this.typesMap.get(STORE_MODULE));
         this.generateFileAndReplace(store.name, this.typesMap.get(STORE_SPEC));
     }
 
@@ -91,10 +93,10 @@ class Generator {
         fs.mkdirSync(name);
         process.chdir(name);
         this.generateFileAndReplace(name, this.typesMap.get(COMPONENT));
-        this.generateFileAndReplace(name, this.typesMap.get(HTML));
-        this.generateFileAndReplace(name, this.typesMap.get(MODULE));
-        this.generateFileAndReplace(name, this.typesMap.get(SASS));
+        this.generateFileAndReplace(name, this.typesMap.get(COMPONENT_MODULE));
         this.generateFileAndReplace(name, this.typesMap.get(COMPONENT_SPEC));
+        this.generateFileAndReplace(name, this.typesMap.get(HTML));
+        this.generateFileAndReplace(name, this.typesMap.get(SASS));
     }
 
     generateFileAndReplace(name: string, generatedType: IGeneratedTypeInfos): void {
