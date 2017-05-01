@@ -24,7 +24,12 @@ class Generator {
 
     replacements: Map<string, string>;
 
-    constructor() {
+    constructor(customTree: IComponent[]) {
+
+        if (customTree != null) {
+            this.componentTree = customTree;
+        }
+
         new StringHelper().extendString();
 
         this.rootDir = path.dirname(require.main.filename);
