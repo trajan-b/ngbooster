@@ -14,7 +14,7 @@ export class <%=camelNameFirstUpper%>Store {
         }
 
         return <%=GET.wayToHttpCall%>
-            .then(response => return <%=camelNameFirstUpper%>.deserialize());
+            .then(responseData => return <%=camelNameFirstUpper%>.deserialize(responseData));
 
     }
     end-GET-->
@@ -22,7 +22,7 @@ export class <%=camelNameFirstUpper%>Store {
     public patch<%=camelNameFirstUpper%>(): Promise<<%=camelNameFirstUpper%>> {
 
         return <%=PATCH.wayToHttpCall%>
-            .then(response => return <%=camelNameFirstUpper%>.deserialize());
+            .then(responseData => return <%=camelNameFirstUpper%>.deserialize(responseData));
 
     }
     end-PATCH-->
@@ -30,7 +30,7 @@ export class <%=camelNameFirstUpper%>Store {
     public put<%=camelNameFirstUpper%>(): Promise<<%=camelNameFirstUpper%>> {
 
         return <%=PUT.wayToHttpCall%>
-            .then(response => return <%=camelNameFirstUpper%>.deserialize());
+            .then(responseData => return <%=camelNameFirstUpper%>.deserialize(responseData));
 
     }
     end-PUT-->
@@ -38,7 +38,7 @@ export class <%=camelNameFirstUpper%>Store {
     public post<%=camelNameFirstUpper%>(): Promise<<%=camelNameFirstUpper%>> {
 
         return <%=POST.wayToHttpCall%>
-            .then(response => return <%=camelNameFirstUpper%>.deserialize());
+            .then(responseData => return <%=camelNameFirstUpper%>.deserialize(responseData));
 
     }
     end-POST-->
@@ -46,7 +46,7 @@ export class <%=camelNameFirstUpper%>Store {
     public delete<%=camelNameFirstUpper%>(): Promise<<%=camelNameFirstUpper%>> {
 
         return <%=DELETE.wayToHttpCall%>
-            .then(response => return <%=camelNameFirstUpper%>.deserialize());
+            .then(responseData => return <%=camelNameFirstUpper%>.deserialize(responseData));
 
     }
     end-DELETE-->

@@ -42,6 +42,6 @@ export const TYPES_MAP: Map<GeneratedType, IGeneratedTypeInfos> = new Map([
     }],
     [STORE_SPEC, {
         fileLabelAdditional: '-store.spec.ts',
-        templateFile: 'spec-template.spec.ts'
+        templateFile: 'spec-store-template.spec.ts'
     }]
 ]);
