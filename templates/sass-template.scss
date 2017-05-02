@@ -1,5 +1,7 @@
-{
-<%=dashName%>
-<%=camelName%>
-<%=camelNameFirstUpper%>
+<%=appPrefix%>-<%=dashName%> {
+
+    .<%=appPrefix%>-<%=dashName%> {
+
+    }
+
 }
