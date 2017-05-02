@@ -3,19 +3,20 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
 import {COMPONENT_TREE, IComponent} from './component-tree';
-import {CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS} from './replacements-map';
+import {APP_PREFIX, CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS} from './replacements-map';
 import {ALL_STORE_REQUESTS, IStore, StoreRequest} from './store-generator';
 import {StringHelper} from './string-helper';
 import {
-    COMPONENT, COMPONENT_SPEC, GeneratedType, HTML, IGeneratedTypeInfos, COMPONENT_MODULE, SASS, STORE, STORE_SPEC,
-    STORE_MODULE, TYPES_MAP
+    COMPONENT, COMPONENT_MODULE, COMPONENT_SPEC, GeneratedType, HTML, IGeneratedTypeInfos, SASS, STORE,
+    STORE_MODULE, STORE_SPEC, TYPES_MAP
 } from './types-map';
 
-const APP_PREFIX: string = 'ei';
+const APPLICATION_PREFIX: string = 'ei';
 const OUTPUT_DIR_NAME: string = 'output';
 
 class Generator {
 
+    appPrefix: string = APPLICATION_PREFIX;
     componentTree: IComponent[] = COMPONENT_TREE;
     typesMap: Map<GeneratedType, IGeneratedTypeInfos> = TYPES_MAP;
 
@@ -25,7 +26,11 @@ class Generator {
 
     replacements: Map<string, string>;
 
-    constructor(customTree: IComponent[]) {
+    constructor(appPrefix: string, customTree?: IComponent[]) {
+
+        if (appPrefix != null) {
+            this.appPrefix = appPrefix;
+        }
 
         if (customTree != null) {
             this.componentTree = customTree;
@@ -36,6 +41,7 @@ class Generator {
         this.rootDir = path.dirname(require.main.filename);
         this.outputDir = this.rootDir;
         this.replacements = new Map<string, string>();
+        this.replacements.set(APP_PREFIX, this.appPrefix);
     }
 
     generate(): void {
@@ -133,7 +139,7 @@ class Generator {
         }
 
         return list
-            .map(element => `'${element}': ${prefix}${APP_PREFIX}${element.toCamelCase()}`)
+            .map(element => `'${element}': ${prefix}${APPLICATION_PREFIX}${element.toCamelCase()}`)
             .join(',');
     }
 

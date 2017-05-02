@@ -1,7 +1,5 @@
-/**
- * Created by Trajan on 25/04/2017.
- */
 
+export const APP_PREFIX: string = '<%=appPrefix%>';
 export const CAMEL_NAME: string = '<%=camelName%>';
 export const CAMEL_NAME_FIRST_UP: string = '<%=camelNameFirstUpper%>';
 export const DASH_NAME: string = '<%=dashName%>';
