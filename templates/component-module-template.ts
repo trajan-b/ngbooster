@@ -1,10 +1,10 @@
 import * as angular from 'angular';
 
-exports const <%=camelName%>Module = angular.module(
+export const <%=camelName%>Module = angular.module(
     '<%=appPrefix%>....<%=camelName%>',
     [
-
+        <%=dependencies%>
     ]
 );
 
-%=camelName%>Module.component();
+<%=camelName%>Module.component(<%=camelNameFirstUpper%>Component.name, <%=camelNameFirstUpper%>Component);
