@@ -3,7 +3,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
 import {COMPONENT_TREE, IComponent} from './component-tree';
-import {APP_PREFIX, CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, INPUTS, OUTPUTS} from './replacements-map';
+import {
+    APP_PREFIX, CAMEL_NAME, CAMEL_NAME_FIRST_UP, DASH_NAME, DEPENDS_ON_MODULES, INPUTS, OUTPUTS
+} from './replacements-map';
 import {ALL_STORE_REQUESTS, IStore, StoreRequest} from './store-generator';
 import {StringHelper} from './string-helper';
 import {
@@ -24,7 +26,7 @@ class Generator {
     rootDir: string;
     templatesDir: string = 'C:/Users/Trajan/Documents/GitHub/ngbooster/templates/';
 
-    replacements: Map<string, string>;
+    replacements: Map<string, string> = new Map<string, string>();
 
     constructor(appPrefix: string, customTree?: IComponent[]) {
 
@@ -40,7 +42,6 @@ class Generator {
 
         this.rootDir = path.dirname(require.main.filename);
         this.outputDir = this.rootDir;
-        this.replacements = new Map<string, string>();
         this.replacements.set(APP_PREFIX, this.appPrefix);
     }
 
@@ -61,6 +62,8 @@ class Generator {
         this.setReplacementsName(comp.name);
         this.replacements.set(INPUTS, this.generateInputs(comp.inputList));
         this.replacements.set(OUTPUTS, this.generateOutputs(comp.outputList));
+        // TODO
+        //this.replacements.set(DEPENDS_ON_MODULES, );
 
         this.generateFiles(comp.name);
         if (comp.retrievesDataFrom != null) {
@@ -73,6 +76,8 @@ class Generator {
 
     dealWithStore(store: IStore): void {
         this.setReplacementsName(store.name);
+        // TODO
+        //this.replacements.set(DEPENDS_ON_MODULES, );
 
         store.actionList.forEach(action => {
             let key: string = `${action.name}.wayToHttpCall`;

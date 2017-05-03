@@ -3,6 +3,7 @@ export const APP_PREFIX: string = '<%=appPrefix%>';
 export const CAMEL_NAME: string = '<%=camelName%>';
 export const CAMEL_NAME_FIRST_UP: string = '<%=camelNameFirstUpper%>';
 export const DASH_NAME: string = '<%=dashName%>';
+export const DEPENDS_ON_MODULES: string = '<%=dependsOnModules%>';
 export const INPUTS: string = '<%=inputs%>';
 export const OUTPUTS: string = '<%=outputs%>';
 
