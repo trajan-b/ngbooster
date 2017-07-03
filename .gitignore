@@ -34,5 +34,3 @@ templates/**/*.js
 templates/**/*.js.map
 test/**/*.js
 test/**/*.js.map
-
-src/output/
