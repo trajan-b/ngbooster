@@ -1,3 +1,5 @@
+import * as angular from 'angular';
+import * as moment from 'moment';
 
 export class ConnectionStore {
 
